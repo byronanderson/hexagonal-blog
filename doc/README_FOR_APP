@@ -1,2 +1,8 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+In this application, I want to play with the object-oriented approach that Matt Wynne describes as "Hexagonal Rails"
+(See http://blog.mattwynne.net/category/hexagonal-rails/)
+
+I want to have this application:
+- authenticate only to me,
+- allow me to make blog posts,
+- allow others to see my blog posts,
+- tweet when I publish a new blog post like "New blog post: #{blog_post.title} #{hyperlink}"

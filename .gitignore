@@ -13,3 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore configuration files that contain sensitive data
+config/database.yml
+config/twitter.yml
+config/passwords.yml

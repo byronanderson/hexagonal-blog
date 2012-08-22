@@ -1,5 +1,7 @@
+require 'twitter'
 load 'lib/blog_post_creator.rb'
 load 'lib/blog_post_updater.rb'
+load 'lib/blog_tweeter.rb'
 class BlogPostsController < ApplicationController
   # GET /blog_posts
   # GET /blog_posts.json
@@ -11,7 +13,6 @@ class BlogPostsController < ApplicationController
       format.json { render json: @blog_posts }
     end
   end
-
   # GET /blog_posts/1
   # GET /blog_posts/1.json
   def show
@@ -42,7 +43,7 @@ class BlogPostsController < ApplicationController
   # POST /blog_posts
   # POST /blog_posts.json
   def create
-    blog_post_creator = BlogPostCreator.new(self)
+    blog_post_creator = BlogPostCreator.new(BlogTweeter.new(self))
     blog_post_creator.create_with(params[:blog_post])
   end
 
