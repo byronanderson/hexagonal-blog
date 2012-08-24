@@ -1,4 +1,5 @@
 HexagonalBlog::Application.routes.draw do
+  resource :author_session, :only => [:new, :create, :destroy]
   resources :blog_posts
 
   # The priority is based upon order of creation:
