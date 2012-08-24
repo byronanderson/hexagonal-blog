@@ -59,9 +59,9 @@ describe BlogPostsController do
         assigns(:blog_post).should be_persisted
       end
 
-      it "redirects to the created blog_post" do
+      it "redirects to the created blog_post's edit page" do
         post :create, {:blog_post => valid_attributes}, valid_session
-        response.should redirect_to(BlogPost.last)
+        response.should redirect_to(edit_blog_post_path(BlogPost.last))
       end
 
       it "tweets the blog post's title" do

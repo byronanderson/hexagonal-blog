@@ -51,7 +51,7 @@ class BlogPostsController < ApplicationController
   def blog_post_creation_succeeded(blog_post)
     @blog_post = blog_post
     respond_to do |format|
-      format.html { redirect_to @blog_post, notice: 'Blog post was successfully created.' }
+      format.html { redirect_to edit_blog_post_path(@blog_post), notice: 'The blog post was successfully created.' }
       format.json { render json: @blog_post, status: :created, location: @blog_post }
     end
   end
@@ -74,7 +74,7 @@ class BlogPostsController < ApplicationController
   def blog_post_update_succeeded(blog_post)
     @blog_post = blog_post
     respond_to do |format|
-      format.html { redirect_to @blog_post, notice: 'Blog post was successfully updated.' }
+      format.html { redirect_to @blog_post, notice: 'The blog post was successfully updated.' }
       format.json { head :no_content }
     end
   end
@@ -94,7 +94,10 @@ class BlogPostsController < ApplicationController
     @blog_post.destroy
 
     respond_to do |format|
-      format.html { redirect_to blog_posts_url }
+      format.html do
+        flash[:success] = "Blog post successfully removed."
+        redirect_to blog_posts_url, :success => "Blog post successfully removed."
+      end
       format.json { head :no_content }
     end
   end

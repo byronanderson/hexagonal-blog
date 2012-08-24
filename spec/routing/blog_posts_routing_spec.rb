@@ -33,3 +33,17 @@ describe BlogPostsController do
 
   end
 end
+
+describe AuthorSessionsController do
+  it "routes to #new" do
+    get("/author_session/new").should route_to("author_sessions#new")
+  end
+
+  it "routes to #create" do
+    post("/author_session").should route_to("author_sessions#create")
+  end
+
+  it "routes to #destroy" do
+    delete("/author_session").should route_to("author_sessions#destroy")
+  end
+end

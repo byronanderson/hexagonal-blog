@@ -25,6 +25,9 @@ end
   gem 'pry'
 group :test do
   gem 'rspec-rails'
+  gem 'steak'
+  gem 'launchy'
+  gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'

@@ -36,3 +36,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def login
+  visit new_author_session_path
+  fill_in "Password", :with => "abc123" # My test configuration has this as admin password
+end
