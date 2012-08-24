@@ -1,4 +1,5 @@
 HexagonalBlog::Application.routes.draw do
+  root :to => "blog_posts#index"
   resource :author_session, :only => [:new, :create, :destroy]
   resources :blog_posts
 

@@ -4,7 +4,7 @@ require 'spec_helper'
 feature "non-logged in users cannot CUD blog posts" do
 end
 
-feature "" do
+feature "blog author can do things with blog posts" do
   background %q{
     Given I am the blog's author
     When I log in
@@ -57,5 +57,23 @@ feature "" do
 
     # You should be told that the blog post has been removed
     page.should have_content "Blog post successfully removed"
+  end
+end
+
+feature "readers can read the blog posts" do
+  background "there are blog posts" do
+    @blog_post = FactoryGirl.create :blog_post
+  end
+
+  scenario "users can read blog posts" do
+    visit blog_posts_path
+
+    page.should have_content @blog_post.title
+  end
+
+  scenario "users cannot edit blog posts" do
+    visit edit_blog_post_path(@blog_post)
+
+    page.should have_content "Access denied"
   end
 end

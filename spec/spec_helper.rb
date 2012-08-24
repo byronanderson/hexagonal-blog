@@ -40,4 +40,5 @@ end
 def login
   visit new_author_session_path
   fill_in "Password", :with => "abc123" # My test configuration has this as admin password
+  click_on "Login"
 end

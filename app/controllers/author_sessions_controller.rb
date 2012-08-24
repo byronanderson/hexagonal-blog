@@ -6,7 +6,9 @@ class AuthorSessionsController < ApplicationController
   def create
     @author_session = AuthorSession.new(params[:author_session])
     if @author_session.valid?
-      session[:logged_in] = true
+      login!
+      flash[:success] = "Logged in successfully"
+      redirect_to root_path
     else
       flash.now[:error] = "Invalid credentials"
       render :new
@@ -14,6 +16,7 @@ class AuthorSessionsController < ApplicationController
   end
 
   def destroy
-    session[:logged_in] = nil
+    logout!
+    redirect_to root_path
   end
 end

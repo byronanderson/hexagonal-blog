@@ -4,6 +4,7 @@ require 'spec_helper'
 describe BlogPostsController do
   before do
     Twitter.stub(:update)
+    controller.stub(:require_author)
   end
 
   def valid_attributes

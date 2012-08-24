@@ -3,6 +3,8 @@ load 'lib/blog_post_creator.rb'
 load 'lib/blog_post_updater.rb'
 load 'lib/blog_tweeter.rb'
 class BlogPostsController < ApplicationController
+  before_filter :require_author, :except => [:index, :show]
+
   # GET /blog_posts
   # GET /blog_posts.json
   def index
