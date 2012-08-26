@@ -15,11 +15,23 @@ describe BlogPostsController do
   end
 
   describe "GET index" do
-    it "assigns all published blog posts as @blog_posts" do
-      published_blog_post = FactoryGirl.create :blog_post, :published => true
-      unpublished_blog_post = FactoryGirl.create :blog_post, :published => false
-      get :index, {}, valid_session
-      assigns(:blog_posts).should eq([published_blog_post])
+    context "when requested by the author" do
+      before { controller.stub(:logged_in? => true) }
+
+      it "assigns all blog posts as @blog_posts" do
+        unpublished_blog_post = FactoryGirl.create :blog_post, :published => false
+        get :index, {}, valid_session
+        assigns(:blog_posts).should eq([unpublished_blog_post])
+      end
+    end
+
+    context "when requested by a reader" do
+      it "assigns all published blog posts as @blog_posts" do
+        published_blog_post = FactoryGirl.create :blog_post, :published => true
+        unpublished_blog_post = FactoryGirl.create :blog_post, :published => false
+        get :index, {}, valid_session
+        assigns(:blog_posts).should eq([published_blog_post])
+      end
     end
   end
 
