@@ -49,7 +49,7 @@ feature "blog author can do things with blog posts" do
   scenario "remove existing posts", %q{
     Then I can destroy existing posts
   } do
-    blog_post = FactoryGirl.create :blog_post
+    blog_post = FactoryGirl.create :blog_post, :published => true
 
     visit blog_posts_path
 
@@ -61,8 +61,8 @@ feature "blog author can do things with blog posts" do
 end
 
 feature "readers can read the blog posts" do
-  background "there are blog posts" do
-    @blog_post = FactoryGirl.create :blog_post
+  background "there is a published blog post" do
+    @blog_post = FactoryGirl.create :blog_post, :published => true
   end
 
   scenario "users can read blog posts" do
@@ -75,5 +75,18 @@ feature "readers can read the blog posts" do
     visit edit_blog_post_path(@blog_post)
 
     page.should have_content "Access denied"
+  end
+
+  scenario "readers cannot read unpublished blog_posts" do
+    @blog_post.published = false
+    @blog_post.save
+
+    visit blog_posts_path
+
+    page.should_not have_content @blog_post.title
+
+    visit blog_post_path(@blog_post)
+
+    page.should_not have_content @blog_post.title
   end
 end

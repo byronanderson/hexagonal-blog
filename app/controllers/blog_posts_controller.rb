@@ -1,6 +1,7 @@
 require 'twitter'
 load 'lib/blog_post_creator.rb'
 load 'lib/blog_post_updater.rb'
+load 'lib/blog_post_finder.rb'
 load 'lib/blog_tweeter.rb'
 class BlogPostsController < ApplicationController
   before_filter :require_author, :except => [:index, :show]
@@ -8,7 +9,7 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts
   # GET /blog_posts.json
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = BlogPost.published.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,12 +19,26 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts/1
   # GET /blog_posts/1.json
   def show
-    @blog_post = BlogPost.find(params[:id])
+    blog_post_finder = BlogPostFinder.new(self)
+    blog_post_finder.find(:with => params, :author? => logged_in?)
+  end
 
+  def blog_post_found(blog_post)
+    @blog_post = blog_post
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @blog_post }
     end
+  end
+
+  def blog_post_not_found
+    flash[:notice] = "Blog post not found"
+    redirect_to root_path
+  end
+
+  def blog_post_restricted
+    # From reader perspective, restricted is the same as missing
+    blog_post_not_found
   end
 
   # GET /blog_posts/new
