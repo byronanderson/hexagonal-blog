@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819232705) do
+ActiveRecord::Schema.define(:version => 20120828063506) do
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(:version => 20120819232705) do
     t.datetime "published_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "body"
+    t.integer  "blog_post_id"
+    t.datetime "removed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "settings", :force => true do |t|
+    t.boolean  "enable_comments", :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
 end

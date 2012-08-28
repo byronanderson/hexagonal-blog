@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -41,4 +42,9 @@ def login
   visit new_author_session_path
   fill_in "Password", :with => "abc123" # My test configuration has this as admin password
   click_on "Login"
+end
+
+def screenshot
+  page.driver.render('/tmp/stuff.jpg', :full => true)
+  `open /tmp/stuff.jpg`
 end

@@ -1,6 +1,8 @@
 class BlogPost < ActiveRecord::Base
   attr_accessible :body, :title, :published
 
+  has_many :comments
+
   scope :published, where("published_at not null")
 
   def published

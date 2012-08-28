@@ -1,7 +1,10 @@
 HexagonalBlog::Application.routes.draw do
   root :to => "blog_posts#index"
+  resources :blog_posts do
+    resources :comments
+  end
   resource :author_session, :only => [:new, :create, :destroy]
-  resources :blog_posts
+  resource :settings
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

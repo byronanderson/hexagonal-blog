@@ -31,6 +31,8 @@ class BlogPostsController < ApplicationController
 
   def blog_post_found(blog_post)
     @blog_post = blog_post
+    @comments = @blog_post.comments
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @blog_post }

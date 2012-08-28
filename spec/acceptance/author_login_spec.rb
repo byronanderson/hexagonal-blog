@@ -1,9 +1,6 @@
 require 'capybara/rspec'
 require 'spec_helper'
 
-feature "non-logged in users cannot CUD blog posts" do
-end
-
 feature "blog author can do things with blog posts" do
   background %q{
     Given I am the blog's author

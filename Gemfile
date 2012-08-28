@@ -22,12 +22,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-  gem 'pry'
+gem 'pry'
+
 group :test do
   gem 'rspec-rails'
   gem 'steak'
   gem 'launchy'
   gem 'factory_girl_rails'
+  gem 'poltergeist'
 end
 
 gem 'jquery-rails'
