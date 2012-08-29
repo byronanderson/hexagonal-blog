@@ -21,3 +21,5 @@ config/passwords.yml
 
 *.swp
 *.swo
+
+.rvmrc
