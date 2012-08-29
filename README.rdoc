@@ -2,16 +2,17 @@ features implemented:
   - author CRUD on blog posts
   - reader R on published blog posts
   - comments
+  - html post body
 
 features to implement:
-
   - activity logger
     - aggregation of activities "in last hour: 1post, 3comments, 2edits"
-
-  - liquid post body
 
   - maintenance mode
 
   - styling
 
   - edit styling
+
+features not to implement:
+  - liquid post body (what dynamic content available?)
