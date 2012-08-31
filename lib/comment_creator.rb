@@ -1,6 +1,8 @@
-require 'echo'
+class CommentCreator
+  def initialize(listener)
+    @listener = listener
+  end
 
-class CommentCreator < Echo
   def create_with(parameters)
     blog_post = BlogPost.find(parameters[:blog_post_id])
     comment = blog_post.comments.build(parameters[:comment])
