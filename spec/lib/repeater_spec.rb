@@ -1,15 +1,15 @@
-load 'lib/echo.rb'
+load 'lib/repeater.rb'
 
-describe Echo do
+describe Repeater do
   let(:listener) { stub.as_null_object }
-  subject(:echo) { Echo.new(listener) }
+  subject(:repeater) { Repeater.new(listener) }
 
   it "sends arbitrary messages that it receives to its listener" do
     listener.should_receive(:foobar)
-    echo.foobar
+    repeater.foobar
   end
 
   it "responds to everything" do
-    echo.should respond_to :foobar
+    repeater.should respond_to :foobar
   end
 end

@@ -1,7 +1,7 @@
 require 'logger'
-load 'lib/echo.rb'
+require 'repeater'
 
-class BlogTweeter < Echo
+class BlogTweeter < Repeater
   def blog_post_creation_succeeded(blog_post)
     Twitter.update tweet_text(blog_post)
   rescue Exception => e

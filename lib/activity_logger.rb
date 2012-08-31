@@ -1,6 +1,6 @@
-require 'echo'
+require 'repeater'
 
-class ActivityLogger < Echo
+class ActivityLogger < Repeater
   def blog_post_creation_succeeded(blog_post)
     BlogPostCreationActivity.create({ :content => blog_post.title })
     @listener.blog_post_creation_succeeded(blog_post)

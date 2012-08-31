@@ -1,4 +1,4 @@
-class Echo
+class Repeater
   def initialize(listener)
     @listener = listener
   end
