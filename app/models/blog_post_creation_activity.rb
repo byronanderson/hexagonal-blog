@@ -1,0 +1,2 @@
+class BlogPostCreationActivity < Activity
+end

@@ -5,6 +5,8 @@ class Echo
 
   def method_missing(method_name, *args, &block)
     @listener.send(method_name, *args, &block)
+  rescue
+    super
   end
 
   def respond_to?(method_name)

@@ -108,6 +108,11 @@ describe BlogPostsController do
           Twitter.should_receive(:update)
           post :create, {:blog_post => valid_attributes}, valid_session
         end
+
+        it "logs the creation of a new blog post" do
+          BlogPostCreationActivity.should_receive(:create)
+          post :create, {:blog_post => valid_attributes}, valid_session
+        end
       end
 
       describe "with invalid params" do

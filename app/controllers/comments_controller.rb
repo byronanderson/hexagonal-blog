@@ -1,14 +1,17 @@
+require 'comment_creator'
 class CommentsController < ApplicationController
 
   def create
-    @blog_post = BlogPost.find(params[:blog_post_id])
-    @comment = @blog_post.comments.build(params[:comment])
+    comment_creator = CommentCreator.new(ActivityLogger.new(self))
+    comment_creator.create_with(params)
+  end
 
-    if @comment.save
-      redirect_to @blog_post
-    else
-      # not sure
-    end
+  def comment_creation_succeeded(comment)
+    redirect_to comment.blog_post
+  end
+
+  def comment_creation_failed(comment)
+    # not sure what happens here, no failure has pointed for me what to do
   end
 
   def destroy

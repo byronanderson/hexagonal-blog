@@ -6,13 +6,14 @@ features implemented:
 
 features to implement:
   - activity logger
+    - activities to log: blog post creation, edit, removal; comment creation, removal; settings changes?
+    - activity logger polymorphic belongs_to a resource (dependent destroy on blog post destruction)
     - aggregation of activities "in last hour: 1post, 3comments, 2edits"
 
   - maintenance mode
 
   - styling
-
-  - edit styling
+    - edit styling
 
 features not to implement:
   - liquid post body (what dynamic content available?)

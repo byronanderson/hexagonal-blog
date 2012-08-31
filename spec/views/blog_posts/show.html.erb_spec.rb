@@ -6,6 +6,7 @@ describe "blog_posts/show" do
       :title => "Title",
       :body => "MyText"
     ))
+    assign(:comments, [])
   end
 
   it "renders attributes in <p>" do

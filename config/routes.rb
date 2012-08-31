@@ -3,6 +3,7 @@ HexagonalBlog::Application.routes.draw do
   resources :blog_posts do
     resources :comments
   end
+  resources :activities, :only => [:index]
   resource :author_session, :only => [:new, :create, :destroy]
   resource :settings
 

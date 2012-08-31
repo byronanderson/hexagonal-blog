@@ -1,9 +1,11 @@
 require 'twitter'
-load 'lib/blog_post_librarian.rb'
-load 'lib/blog_post_creator.rb'
-load 'lib/blog_post_updater.rb'
-load 'lib/blog_post_finder.rb'
-load 'lib/blog_tweeter.rb'
+require 'blog_post_librarian'
+require 'blog_post_creator'
+require 'blog_post_updater'
+require 'blog_post_finder'
+require 'activity_logger'
+require 'blog_tweeter'
+
 class BlogPostsController < ApplicationController
   before_filter :require_author, :except => [:index, :show]
 
@@ -68,7 +70,7 @@ class BlogPostsController < ApplicationController
   # POST /blog_posts
   # POST /blog_posts.json
   def create
-    blog_post_creator = BlogPostCreator.new(BlogTweeter.new(self))
+    blog_post_creator = BlogPostCreator.new(ActivityLogger.new(BlogTweeter.new(self)))
     blog_post_creator.create_with(params[:blog_post])
   end
 
