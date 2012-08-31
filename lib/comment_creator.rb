@@ -1,15 +1,16 @@
-class CommentCreator
-  def initialize(listener)
-    @listener = listener
+require 'resource_creator'
+
+class CommentCreator < ResourceCreator
+  def create_with(blog_post_id, parameters)
+    @scope = BlogPost.find(blog_post_id).comments
+    super(parameters)
   end
 
-  def create_with(parameters)
-    blog_post = BlogPost.find(parameters[:blog_post_id])
-    comment = blog_post.comments.build(parameters[:comment])
-    if comment.save
-      @listener.comment_creation_succeeded(comment)
-    else
-      @listener.comment_creation_failed(comment)
-    end
+  def scope
+    @scope
+  end
+
+  def resource_name
+    "comment"
   end
 end

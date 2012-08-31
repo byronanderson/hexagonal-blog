@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     comment_creator = CommentCreator.new(ActivityLogger.new(self))
-    comment_creator.create_with(params)
+    comment_creator.create_with(params[:blog_post_id], params[:comment])
   end
 
   def comment_creation_succeeded(comment)

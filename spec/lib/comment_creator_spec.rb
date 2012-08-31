@@ -6,15 +6,15 @@ describe CommentCreator do
   let(:comment_creator) { CommentCreator.new(listener) }
   let(:parameters) { stub.as_null_object }
   let(:comment) { stub.as_null_object }
-  let(:comments) { stub(:build => comment) }
+  let(:comments) { stub(:new => comment) }
   let(:blog_post) { stub(:comments => comments) }
 
   before { BlogPost.stub(:find).and_return(blog_post) }
 
 
   it "creates comments" do
-    comments.should_receive(:build).and_return(comment)
-    comment_creator.create_with(parameters)
+    comments.should_receive(:new).and_return(comment)
+    comment_creator.create_with(stub, parameters)
   end
 
   context "the creation succeeds" do
@@ -22,7 +22,7 @@ describe CommentCreator do
 
     it "tells its listener comment_creation_succeded if it succeeds" do
       listener.should_receive(:comment_creation_succeeded).with(comment)
-      comment_creator.create_with(parameters)
+      comment_creator.create_with(stub, parameters)
     end
   end
 
@@ -31,7 +31,7 @@ describe CommentCreator do
 
     it "tells its listener comment_creation_failed if it fails" do
       listener.should_receive(:comment_creation_failed).with(comment)
-      comment_creator.create_with(parameters)
+      comment_creator.create_with(stub, parameters)
     end
   end
 end
