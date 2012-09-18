@@ -10,10 +10,12 @@ features to implement:
     - activity logger polymorphic belongs_to a resource (dependent destroy on blog post destruction)
     - aggregation of activities "in last hour: 1post, 3comments, 2edits"
 
-  - maintenance mode
+  - rss feed of posts
 
   - styling
     - edit styling
 
 features not to implement:
   - liquid post body (what dynamic content available?)
+  - maintenance mode
+
